@@ -1,0 +1,18 @@
+#search-input{
+    padding:5px;
+    border: 2px solid #ccc;
+    border-radius:2px;
+    outline: 0;
+}
+#search-input:focus{
+    border-radius:2px;
+    border: 2px solid rgb(98, 164, 114);
+}
+#search-btn{
+    padding:7px;
+    color:rgb(255, 255, 255);
+    background-color: rgb(98, 164, 114);
+    border:0;
+    border-radius: 2px;
+    cursor:pointer
+}
