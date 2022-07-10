@@ -1,8 +1,4 @@
-interface Video {
-  id: number;
-  title: string;
-  grade: number;
-}
+
 // import { render } from "react-dom"
 import { App } from "./App"
 import { createRoot } from 'react-dom/client';
