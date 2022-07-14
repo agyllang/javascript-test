@@ -2,7 +2,7 @@
   "videos": [
     {
       "id": 1,
-      "grade": 4,
+      "grade": 3,
       "title": "Joker"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "id": 7,
-      "grade": 2,
+      "grade": 3,
       "title": "Hot fuzz"
     }
   ]

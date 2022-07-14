@@ -5,6 +5,7 @@ import { Video } from "./model";
 interface MovieProps {
   updateRating?: (id: number, changes: Video) => void;
   movieResults?: Array<Video>;
+  searchedFor?: string;
 }
 
 const MovieResults: React.FC<MovieProps> = (props): React.ReactElement => {
@@ -13,6 +14,7 @@ const MovieResults: React.FC<MovieProps> = (props): React.ReactElement => {
   const [grade, setGrade] = useState<number>(1);
   const [video, setVideo] = useState<Video>();
   console.log("video", video);
+  console.log("props.movieResults", props.movieResults);
 
   const handleConfirm = () => {
     console.log("handleConfirm");
@@ -36,35 +38,46 @@ const MovieResults: React.FC<MovieProps> = (props): React.ReactElement => {
     }
   }, [props.movieResults]);
 
-  console.log("grade", grade);
+  //   console.log("grade", grade);
   return (
-    <ul>
+    <div>
+      {props.movieResults.length === 0 && props.searchedFor !== null && (
+        <span>Your search for "{props.searchedFor}" yielded no results</span>
+      )}
       {props.movieResults.map((movie) => {
         return (
           <div key={movie.id}>
-            <li>
-              <li> {movie.title}</li>
-              <li> {movie.grade} </li>
-            </li>
-
-            <button onClick={() => setEdit(!edit)}>Edit grade</button>
-            {edit && <button onClick={() => handleConfirm()}>Confirm</button>}
-            {edit && (
+            <h4> {movie.title}</h4>
+            {!edit ? (
               <>
-                Edit grade
+                <span>Grade: {movie.grade}/5 </span>
+                <button className="btn edit" onClick={() => setEdit(!edit)}>
+                  Edit
+                </button>
+              </>
+            ) : (
+              <>
+                <span>Edit grade</span>
                 <input
-                  type="range"
+                  className="input"
+                  type="number"
                   onChange={handleChange}
                   min={1}
                   max={5}
                   value={grade}
                 ></input>
+                <button className="btn confirm" onClick={() => handleConfirm()}>
+                  Confirm
+                </button>
+                <button className="btn cancel" onClick={() => setEdit(!edit)}>
+                  Cancel
+                </button>
               </>
             )}
           </div>
         );
       })}
-    </ul>
+    </div>
   );
 };
 

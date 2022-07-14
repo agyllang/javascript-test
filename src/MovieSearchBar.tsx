@@ -22,16 +22,15 @@ const MovieSearchBar: React.FC<SearchProps> = (props): React.ReactElement => {
       <div id="search-bar">
         <input
           type="text"
-          id="search-input"
+          className="input search"
           placeholder="Search Movie Database"
           onChange={handleChange}
           value={query}
         />
-        <button type="button" id="search-btn" onClick={() => props.searchFn(query)}>
+        <button type="button" className="btn search" onClick={() => props.searchFn(query)}>
           Search
         </button>
       </div>
-      <div id="results"></div>
     </div>
   );
 };

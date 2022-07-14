@@ -6,18 +6,23 @@ import { Video } from "./model";
 const App: React.FC<{}> = (): JSX.Element => {
   const [dataResults, setDataResults] = useState<Video[]>([]);
   const [updateId, setUpdateID] = useState<number>(null);
+  const [searchedFor, setSearchedFor] = useState<string>(null);
   const [changeMovie, setChangeMovie] = useState<Video>();
   console.log("dataResults");
 
-  //used to handle race conditions
-  const abortController: AbortController = new AbortController();
+  
 
  
   useEffect(() => {
+    //this useEffect function triggers once a movie grade has been changed
+    
+    // abortController is used to handle race conditions
+
+   const abortController: AbortController = new AbortController();
     if (updateId == null) {
       return;
     }
-    console.log(" useEffect PUT request");
+    console.log("useEffect PUT request");
 
     const updateMovie = async (id: number, changes: Video): Promise<Video> => {
       // Default options are marked with *
@@ -50,6 +55,7 @@ const App: React.FC<{}> = (): JSX.Element => {
   }, [updateId, changeMovie]);
 
   const getMovie = async (query: string) => {
+    setSearchedFor(query)
     const response = await fetch(`http://localhost:3000/videos?title=${query}`);
     console.log("response", response);
 
@@ -73,6 +79,8 @@ const App: React.FC<{}> = (): JSX.Element => {
       <MovieResults
         updateRating={(id, changes) => updateRating(id, changes)}
         movieResults={dataResults}
+        searchedFor={searchedFor}
+        
       />
     </div>
   );

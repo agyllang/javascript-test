@@ -1,18 +1,39 @@
-#search-input{
+.input{
     padding:5px;
     border: 2px solid #ccc;
     border-radius:2px;
     outline: 0;
 }
-#search-input:focus{
+
+/* #search-input{
+    padding:5px;
+    border: 2px solid #ccc;
     border-radius:2px;
-    border: 2px solid rgb(98, 164, 114);
+    outline: 0;
+} */
+.input.search:focus{
+    border-radius:2px;
+    border: 2px solid rgb(64, 159, 213);
 }
-#search-btn{
+.btn{
     padding:7px;
     color:rgb(255, 255, 255);
-    background-color: rgb(98, 164, 114);
     border:0;
     border-radius: 2px;
     cursor:pointer
+}
+.btn.edit{
+    background-color: rgb(169, 204, 235);
+}
+.btn.search{
+    background-color: rgb(64, 159, 213);
+}
+
+.btn.confirm{
+    background-color: rgb(98, 164, 129);
+
+}
+.btn.cancel{
+    background-color: rgb(164, 98, 98);
+
 }
