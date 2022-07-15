@@ -6,15 +6,17 @@ interface SearchProps {
 
 const MovieSearchBar: React.FC<SearchProps> = (props): React.ReactElement => {
   const [query, setQuery] = useState("");
-  
+  // console.log("query",query)
   const handleChange = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>): void => {
     // const searchQuery: string = target.value.toLowerCase();
-    const searchQuery: string = target.value
-    setQuery(searchQuery);
+    const inputValue: string = target.value
+    // props.searchFn(searchQuery)
+    setQuery(inputValue);
+    // console.log("searching for",searchQuery)
+    
   };
-  console.log("query:", query);
 
 
   return (
@@ -25,7 +27,8 @@ const MovieSearchBar: React.FC<SearchProps> = (props): React.ReactElement => {
           className="input search"
           placeholder="Search Movie Database"
           onChange={handleChange}
-          value={query}
+          // value={query}
+
         />
         <button type="button" className="btn search" onClick={() => props.searchFn(query)}>
           Search

@@ -2,7 +2,7 @@
   "videos": [
     {
       "id": 1,
-      "grade": 3,
+      "grade": 1,
       "title": "Joker"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "id": 3,
-      "grade": 1,
+      "grade": 3,
       "title": "Kingpin"
     },
     {

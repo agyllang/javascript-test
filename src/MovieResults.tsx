@@ -5,32 +5,27 @@ import { Video } from "./model";
 interface MovieProps {
   updateRating?: (id: number, changes: Video) => void;
   movieResults?: Array<Video>;
-  searchedFor?: string;
+  searchTerm?: string;
 }
 
 const MovieResults: React.FC<MovieProps> = (props): React.ReactElement => {
-  //   const [movieId, setMovieId] = useState<number>();
   const [edit, setEdit] = useState<boolean>(false);
   const [grade, setGrade] = useState<number>(1);
   const [video, setVideo] = useState<Video>();
-  console.log("video", video);
-  console.log("props.movieResults", props.movieResults);
 
   const handleConfirm = () => {
-    console.log("handleConfirm");
-
     props.updateRating(video.id, video);
 
     setEdit(false);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGrade(parseInt(event.target.value));
     setVideo({ ...video, grade: parseInt(event.target.value) });
   };
 
   useEffect(() => {
-    //the grade is set as state when a movie has been searched
+    //the grade is set as state when a movie has been searched for
     //used to
     if (props.movieResults.length > 0) {
       setGrade(props.movieResults[0].grade);
@@ -38,11 +33,10 @@ const MovieResults: React.FC<MovieProps> = (props): React.ReactElement => {
     }
   }, [props.movieResults]);
 
-  //   console.log("grade", grade);
   return (
     <div>
-      {props.movieResults.length === 0 && props.searchedFor !== null && (
-        <span>Your search for "{props.searchedFor}" yielded no results</span>
+      {props.movieResults.length === 0 && props.searchTerm !== null && (
+        <span>Your search for "{props.searchTerm}" yielded no results</span>
       )}
       {props.movieResults.map((movie) => {
         return (
@@ -61,7 +55,7 @@ const MovieResults: React.FC<MovieProps> = (props): React.ReactElement => {
                 <input
                   className="input"
                   type="number"
-                  onChange={handleChange}
+                  onChange={handleOnChange}
                   min={1}
                   max={5}
                   value={grade}
